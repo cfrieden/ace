@@ -1,0 +1,9 @@
+.DS_Store
+*.classpath
+*.project
+*.settings
+*.tern-project
+target/
+src/main/webapp/node_modules
+bin/
+lab-camel-services/META-INF

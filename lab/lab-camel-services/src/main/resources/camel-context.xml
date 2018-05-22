@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:kie="http://drools.org/schema/kie-spring"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context     http://www.springframework.org/schema/context/spring-context-3.0.xsd http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd ">
+    <context:component-scan base-package="com.rhc"/>
+    <!-- Spring Imports -->
+    <import resource="classpath:camel-beans.xml"/>
+    <camel:proxy id="labProxySender"
+        serviceInterface="com.rhc.lab.service.proxy.LabProxySender" serviceUrl="direct:start"/>
+    <bean class="com.rhc.lab.route.LabRouteBuilder" id="labRouteBuilder"/>
+    <!-- build session -->
+    <!-- set return class header -->
+    <!-- send session to statless Decision Service -->
+    <!-- process the returned response -->
+    <camelContext id="camelContext-8f4fe40b-9731-4b52-a5d9-ee7ebb707abe" xmlns="http://camel.apache.org/schema/spring">
+        <routeBuilder ref="labRouteBuilder"/>
+    </camelContext>
+</beans>
